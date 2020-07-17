@@ -1,0 +1,11 @@
+version: "3.8"
+services: 
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    dns: 192.168.1.21
+    ports: 
+      - "80:80/tcp"
+      - "442:442/tcp"
+      volumes: 
+        - /mnt/data/Nginx_Server/nginx.conf:/etc/nginx/nginx.conf:ro
