@@ -1,0 +1,1 @@
+cp ./nginx.conf /mnt/data/Nginx_Server/nginx.conf

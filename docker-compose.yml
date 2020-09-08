@@ -5,6 +5,13 @@ services:
     container_name: nginx_server
     ports: 
       - "80:80/tcp"
+<<<<<<< HEAD
       - "443:443/tcp"
     volumes: 
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+=======
+      - "442:442/tcp"
+    volumes: 
+      - /mnt/data/Nginx_Server/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+>>>>>>> 973d27aecaa6f210fb4fe5d5bc2c4aadbe227bc6
