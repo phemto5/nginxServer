@@ -1,0 +1,26 @@
+# Pull base image.
+FROM dockerfile/ubuntu
+
+# Install Nginx.
+RUN \
+  add-apt-repository -y ppa:nginx/stable && \
+  apt-get update && \
+  apt-get install -y nginx && \
+  rm -rf /var/lib/apt/lists/* && \
+  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+  chown -R www-data:www-data /var/lib/nginx
+
+run apt update && apt-uograde -y
+run apt install snapd -y
+run snap install --classic certbot
+run ln -s /snap/bin/certbot /usr/bin/certbot
+run certbot --nginx
+
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+
+WORKDIR /etc/nginx
+
+CMD ["nginx"]
+
+EXPOSE 80
+EXPOSE 443
