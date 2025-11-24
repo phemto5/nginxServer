@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   nginx:
     image: nginx:latest
@@ -6,27 +5,21 @@ services:
     hostname: nginx
     dns: 
       - 192.168.1.21
-      - 192.168.1.22
     dns_search: 
-      - anderson.local
+      - tlnnegm.local
+      - tlnnegm.com
+      - drownedashes.com
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
     volumes:
-      - nginxdata:/etc/nginx:ro
-        # - certs:/etc/nginx/certs:ro
+      - ./nginxdata:/etc/nginx:rw
+      - ./www:/www
     restart: unless-stopped
     networks:
       - vmnw
 
 networks:
   vmnw:
-    external:
-      name: vm_nw
-volumes:
-  nginxdata:
-    external:
-      name: nginx_data
-      #  certs:
-      #    external:
-      #      name: certs
+    external: true
+    name: vm_nw
