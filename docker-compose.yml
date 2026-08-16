@@ -7,8 +7,12 @@ services:
       - 192.168.1.21
     dns_search: 
       - tlnnegm.local
-      - tlnnegm.com
+      - tlnnegm.netm
       - drownedashes.com
+    extra_hosts:
+      - "n8n.drownedashes.com:192.168.1.55"
+      - "host.docker.internal:192.168.1.55"
+
     ports:
       - "80:80/tcp"
       - "443:443/tcp"

@@ -1,0 +1,67 @@
+[user]
+	email = nicholas.anderson@kaiserAluminum.com
+  name = Nicholas Anderson
+[core]
+	sshCommand = ssh.exe
+	editor = neovide
+[maintenance]
+	repo = C:/Users/tr23433/projects/Releases
+[alias]
+	graph = log --oneline --graph --all
+	ca = commit -am"commit all intermitent"
+	sw = switch 
+  ci = commit
+  d = difftool
+  dg = difftool -g
+  chp = cherry-pick -x
+[init]
+	defaultBranch = main
+[merge]
+	tool = winmerge
+[diff]
+  tool = nvim
+  # tool = difftastic
+	guitool = winmerge
+  # external = difft
+[difftool]
+  prompt = false
+[difftool "nvim"]
+	layout = "LCOAL,MERGED,REMOTE / MERGED"
+	cmd = "neovide -d \"$LOCAL\" \"$REMOTE\""
+  prompt = false
+[difftool "winmerge"]
+  name = WinMerge
+  trustExitCode = true
+  cmd = "/C/Users/tr23433/AppData/Local/Programs/WinMerge/WinMergeU.exe" -u -e $LOCAL $REMOTE
+[difftool "difftastic"]
+    # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+[pager]
+  difftool = false
+[pull]
+	rebase = true
+[credential]
+	helper = store
+[push]
+  default = current
+  followTags = true
+[pull]
+  rebase = false
+  ff = only
+[log]
+	follow = true
+[credential]
+  helper = store
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "nvim"]
+	layout = "LCOAL,MERGED,REMOTE / MERGED"
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+[mergetool "winmerge"]
+  name = WinMerge
+  trustExitCode = true
+  cmd = "/C/Users/tr23433/AppData/Local/Programs/WinMerge/WinMergeU.exe" -u -e -dl \"Local\" -dr \"Remote\" $LOCAL $REMOTE $MERGED
+  cmd = "/c/Users/tr23433/AppData/local/Programs/WinMerge/WinMergeU.exe" -u -e -dl \"Local\" -dr \"Remote\" $LOCAL $REMOTE $MERGED
+[safe]
+	directory = C:/Users/tr23433/AppData/Local/nvim
