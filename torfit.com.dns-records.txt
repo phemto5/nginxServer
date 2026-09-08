@@ -1,0 +1,14 @@
+# DNS Records to replicate from drownedashes.com to torfit.com
+
+## Required Records (from drownedashes.com):
+
+- A: torfit.com -> <DDNS-IP>    # Set to dynamic IP, update via script
+- A: www.torfit.com -> <DDNS-IP> # Set to same as bare domain or CNAME to torfit.com
+- MX: (none found for drownedashes.com; set if needed)
+- AAAA: (none found)
+- CNAME: (none found for www, so create if needed)
+
+## Notes
+- Use Cloudflare API to automate creation/updating of these records.
+- DDNS: Set up A records for both root (torfit.com) and www (www.torfit.com), which update automatically as IP changes.
+- Future records can be added as needed.
