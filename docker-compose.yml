@@ -7,6 +7,7 @@ services:
       - 192.168.1.21
     dns_search: 
       - tlnnegm.local
+      - torfit.com
     extra_hosts:
       - "host.docker.internal:192.168.1.55"
     ports:
@@ -15,6 +16,18 @@ services:
     volumes:
       - ./nginxdata:/etc/nginx:rw
       - ./www:/www
+    restart: unless-stopped
+    networks:
+      - vmnw
+
+  certbot:
+    image: certbot/dns-cloudflare
+    container_name: certbot_torfit
+    volumes:
+      - ./cloudflare.ini:/cloudflare.ini:ro
+      - ./letsencrypt:/etc/letsencrypt
+      - ./letsencrypt-lib:/var/lib/letsencrypt
+    entrypoint: ["sleep", "inf"]
     restart: unless-stopped
     networks:
       - vmnw

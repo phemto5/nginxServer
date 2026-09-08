@@ -1,21 +1,33 @@
-#!/bin/bash
-# Issue/renew wildcard SSL certs for torfit.com and subdomains with DNS-01 (Cloudflare)
-DOMAIN=torfit.com
-CERTBOT_CONF=cloudflare.ini
-LETSENCRYPT_DIR=/etc/letsencrypt/live/$DOMAIN
+# Issue/Renew wildcard SSL certs for torfit.com and subdomains via DNS-01 (Cloudflare)
+# Uses official certbot Docker image with Cloudflare plugin
 
-echo "[INFO] Requesting certificate for *.$DOMAIN and $DOMAIN via Cloudflare DNS-01"
-certbot certonly \ 
-  --dns-cloudflare \ 
-  --dns-cloudflare-credentials $CERTBOT_CONF \ 
-  --dns-cloudflare-propagation-seconds 30 \ 
-  -d $DOMAIN -d *.$DOMAIN \
-  --non-interactive \ 
-  --agree-tos \ 
-  --email your-email@example.com
+CLOUDFLARE_INI="$(pwd)/cloudflare.ini"
+LE_DIR="/etc/letsencrypt"
+LIB_DIR="/var/lib/letsencrypt"
+DOMAIN="torfit.com"
+EMAIL="nicholasaa+l1g6ztvv@gmail.com"
 
-if [ -d "$LETSENCRYPT_DIR" ]; then
-  echo "[INFO] Certificates issued under $LETSENCRYPT_DIR/"
+if ! [ -f "$CLOUDFLARE_INI" ]; then
+  echo "[ERROR] cloudflare.ini missing in current directory." >&2
+  exit 1
+fi
+
+sudo docker run --rm \
+  -v "$CLOUDFLARE_INI:/cloudflare.ini:ro" \
+  -v "$LE_DIR:$LE_DIR" \
+  -v "$LIB_DIR:$LIB_DIR" \
+  certbot/dns-cloudflare certonly \
+    --dns-cloudflare \
+    --dns-cloudflare-credentials /cloudflare.ini \
+    --dns-cloudflare-propagation-seconds 30 \
+    -d "$DOMAIN" -d "*.$DOMAIN" \
+    --email "$EMAIL" \
+    --agree-tos \
+    --non-interactive
+
+CODE=$?
+if [ $CODE -eq 0 ]; then
+  echo "[INFO] Certificates issued/renewed under $LE_DIR/live/$DOMAIN/"
 else
-  echo "[ERROR] Certificate issuance failed."
+  echo "[ERROR] Docker certbot run failed ($CODE)." >&2
 fi
