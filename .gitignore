@@ -2,4 +2,5 @@ www/
 certs/
 temp/
 cloudflare.ini
+letsencrypt.safe_backup/
 letsencrypt/
