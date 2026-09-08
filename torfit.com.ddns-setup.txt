@@ -1,0 +1,34 @@
+# Cloudflare DDNS Setup Instructions for torfit.com
+
+## API Credential Requirements
+- CLOUDFLARE_API_TOKEN (or Global API Key) with DNS:Edit permission for the torfit.com zone
+- Cloudflare Account Email (if using Global API Key)
+- Cloudflare Zone ID for torfit.com
+
+## Steps (What can/can't be automated)
+- If API credentials are provided, DNS record creation and DDNS setup can be fully automated.
+- Without credentials, only record lists and instructions can be provided; actual API/config changes require manual action.
+
+## Enabling DDNS
+1. Create a script (on your dynamic-IP host) to POST updates via Cloudflare API:
+   - Endpoint: https://api.cloudflare.com/client/v4/zones/<ZONE_ID>/dns_records/<RECORD_ID>
+   - Auth Header: Bearer <API_TOKEN>
+   - Payload: '{"type":"A","name":"torfit.com","content":<your_ip>,"ttl":1,"proxied":false}'
+2. Repeat for www.torfit.com (or use CNAME to root)
+3. For Windows: use curl in a scheduled task or PowerShell script
+4. For Linux: use ddclient or a custom script with cron
+
+## References
+- Cloudflare Dynamic DNS: https://developers.cloudflare.com/dns/manage-dns-records/how-to/managing-dynamic-ip-addresses/
+- API docs: https://api.cloudflare.com/
+
+## Manual Steps If Automation Blocked
+- Log into Cloudflare dashboard for torfit.com
+- Add A records as above if not created by script
+- Generate API Token with DNS:Edit for scripting
+
+## (Optional) Sample curl update:
+curl -X PUT "https://api.cloudflare.com/client/v4/zones/<ZONE_ID>/dns_records/<RECORD_ID>" \
+     -H "Authorization: Bearer <API_TOKEN>" \
+     -H "Content-Type: application/json" \
+     --data '{"type":"A","name":"torfit.com","content":"<your_ip>","ttl":1,"proxied":false}'

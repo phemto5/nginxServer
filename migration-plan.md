@@ -21,7 +21,7 @@
 - AGENT: automation for pattern replace, codebase-inspection; agent-orchestrator for rollout
 
 ## 5. Obtain Let’s Encrypt Certificates (DNS-01)
-- Set up certbot w/ cloudflare plugin and API key.
+- Set up certbot w/ Cloudflare plugin and API key for torfit.com.
 - Generate/renew certificates for torfit.com and subdomains.
 - Automate renewal and nginx reload hooks.
 - AGENT: automation for certbot install/run; agent-bitwarden-credential for secrets
