@@ -2,3 +2,4 @@ www/
 certs/
 temp/
 cloudflare.ini
+letsencrypt/
