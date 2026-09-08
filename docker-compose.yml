@@ -22,7 +22,7 @@ services:
 
   certbot:
     image: certbot/dns-cloudflare
-    container_name: certbot_torfit
+    container_name: certbot_torrift
     volumes:
       - ./cloudflare.ini:/cloudflare.ini:ro
       - ./letsencrypt:/etc/letsencrypt
