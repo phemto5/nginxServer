@@ -1,16 +1,16 @@
-# Migration Plan: Migrate All Services to torfit.com
+# Migration Plan: Migrate All Services to torrift.com
 
 ## 1. Audit and Inventory
 - List all current public domains/subdomains in use.
 - Find all config/code references to old domain(s) (drownedashes.com, etc).
 - AGENT: codebase-inspection (list domain references; suggest a search agent)
 
-## 2. Register torfit.com in Cloudflare
+## 2. Register torrift.com in Cloudflare
 - Confirm ownership and DNS control in Cloudflare panel.
 - AGENT: cloudflare API skills (if available) or manual verification
 
 ## 3. Set Up DNS and Dynamic DNS
-- Recreate records for all services under torfit.com in Cloudflare.
+- Recreate records for all services under torrift.com in Cloudflare.
 - Configure DDNS for hosts with dynamic IPs (e.g., install DDNS client, Cloudflare API token)
 - AGENT: cloudflare API, automation for update scripts; agent-audit for DDNS updates
 
@@ -21,8 +21,8 @@
 - AGENT: automation for pattern replace, codebase-inspection; agent-orchestrator for rollout
 
 ## 5. Obtain Let’s Encrypt Certificates (DNS-01)
-- Set up certbot w/ Cloudflare plugin and API key for torfit.com.
-- Generate/renew certificates for torfit.com and subdomains.
+- Set up certbot w/ Cloudflare plugin and API key for torrift.com.
+- Generate/renew certificates for torrift.com and subdomains.
 - Automate renewal and nginx reload hooks.
 - AGENT: automation for certbot install/run; agent-bitwarden-credential for secrets
 

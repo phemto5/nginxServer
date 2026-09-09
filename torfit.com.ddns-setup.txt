@@ -1,9 +1,9 @@
-# Cloudflare DDNS Setup Instructions for torfit.com
+# Cloudflare DDNS Setup Instructions for torrift.com
 
 ## API Credential Requirements
-- CLOUDFLARE_API_TOKEN (or Global API Key) with DNS:Edit permission for the torfit.com zone
+- CLOUDFLARE_API_TOKEN (or Global API Key) with DNS:Edit permission for the torrift.com zone
 - Cloudflare Account Email (if using Global API Key)
-- Cloudflare Zone ID for torfit.com
+- Cloudflare Zone ID for torrift.com
 
 ## Steps (What can/can't be automated)
 - If API credentials are provided, DNS record creation and DDNS setup can be fully automated.
@@ -23,7 +23,7 @@
 - API docs: https://api.cloudflare.com/
 
 ## Manual Steps If Automation Blocked
-- Log into Cloudflare dashboard for torfit.com
+- Log into Cloudflare dashboard for torrift.com
 - Add A records as above if not created by script
 - Generate API Token with DNS:Edit for scripting
 
