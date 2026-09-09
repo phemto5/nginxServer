@@ -1,10 +1,10 @@
-# Issue/Renew wildcard SSL certs for torfit.com and subdomains via DNS-01 (Cloudflare)
+# Issue/Renew wildcard SSL certs for torrift.com and subdomains via DNS-01 (Cloudflare)
 # Uses official certbot Docker image with Cloudflare plugin
 
 CLOUDFLARE_INI="$(pwd)/cloudflare.ini"
 LE_DIR="/etc/letsencrypt"
 LIB_DIR="/var/lib/letsencrypt"
-DOMAIN="torfit.com"
+DOMAIN="torrift.com"
 EMAIL="nicholasaa+l1g6ztvv@gmail.com"
 
 if ! [ -f "$CLOUDFLARE_INI" ]; then

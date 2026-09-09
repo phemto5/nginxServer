@@ -7,7 +7,7 @@ services:
       - 192.168.1.21
     dns_search: 
       - tlnnegm.local
-      - torfit.com
+      - torrift.com
     extra_hosts:
       - "host.docker.internal:192.168.1.55"
     ports:
